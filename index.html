@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panier d'Achat</title>
+    <!-- Lien vers le fichier CSS pour styliser la page -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Conteneur principal pour le panier d'achat -->
+    <div id="cart">
+        <h1>Votre Panier</h1> <!-- Titre du panier d'achat -->
+        
+        <!-- Premier article du panier -->
+        <div class="cart-item" data-id="1">
+            <div class="item-info">
+                <!-- Nom du produit -->
+                <p class="item-name">Produit 1</p>
+                <!-- Prix du produit -->
+                <p class="item-price">10.00 €</p>
+            </div>
+            <div class="item-actions">
+                <!-- Bouton pour diminuer la quantité -->
+                <button class="btn-quantity" data-action="decrease">-</button>
+                <!-- Affichage de la quantité actuelle -->
+                <span class="item-quantity">1</span>
+                <!-- Bouton pour augmenter la quantité -->
+                <button class="btn-quantity" data-action="increase">+</button>
+                <!-- Bouton pour supprimer l'article -->
+                <button class="btn-remove">Supprimer</button>
+                <!-- Bouton pour aimer l'article -->
+                <button class="btn-like">❤️</button>
+            </div>
+        </div>
+        
+        <!-- Deuxième article du panier -->
+        <div class="cart-item" data-id="2">
+            <div class="item-info">
+                <!-- Nom du produit -->
+                <p class="item-name">Produit 2</p>
+                <!-- Prix du produit -->
+                <p class="item-price">15.00 €</p>
+            </div>
+            <div class="item-actions">
+                <!-- Bouton pour diminuer la quantité -->
+                <button class="btn-quantity" data-action="decrease">-</button>
+                <!-- Affichage de la quantité actuelle -->
+                <span class="item-quantity">1</span>
+                <!-- Bouton pour augmenter la quantité -->
+                <button class="btn-quantity" data-action="increase">+</button>
+                <!-- Bouton pour supprimer l'article -->
+                <button class="btn-remove">Supprimer</button>
+                <!-- Bouton pour aimer l'article -->
+                <button class="btn-like">❤️</button>
+            </div>
+        </div>
+        
+        <!-- Affichage du prix total -->
+        <div class="total">
+            <p>Total: <span id="total-price">25.00</span> €</p>
+        </div>
+    </div>
+<script>
+// Sélectionner tous les éléments du panier avec la classe 'cart-item'
+const cartItems = document.querySelectorAll('.cart-item');
+// Sélectionner l'élément qui affichera le prix total
+const totalPriceElement = document.getElementById('total-price');
+
+// Parcourir chaque article du panier pour ajouter des fonctionnalités
+cartItems.forEach(item => {
+    // Sélectionner les éléments nécessaires dans chaque article
+    const quantityElement = item.querySelector('.item-quantity'); // Élement affichant la quantité
+    const priceElement = item.querySelector('.item-price'); // Élement affichant le prix
+    const likeButton = item.querySelector('.btn-like'); // Bouton pour aimer l'article
+    const removeButton = item.querySelector('.btn-remove'); // Bouton pour supprimer l'article
+    const increaseButton = item.querySelector('.btn-quantity[data-action="increase"]'); // Bouton pour augmenter la quantité
+    const decreaseButton = item.querySelector('.btn-quantity[data-action="decrease"]'); // Bouton pour diminuer la quantité
+    
+    // Gérer l'augmentation de la quantité
+    increaseButton.addEventListener('click', () => {
+        let quantity = parseInt(quantityElement.textContent); // Obtenir la quantité actuelle
+        quantityElement.textContent = ++quantity; // Incrémenter et mettre à jour l'affichage
+        updateTotalPrice(); // Appeler la fonction pour mettre à jour le prix total
+    });
+
+    // Gérer la diminution de la quantité
+    decreaseButton.addEventListener('click', () => {
+        let quantity = parseInt(quantityElement.textContent); // Obtenir la quantité actuelle
+        if (quantity > 1) { // Vérifier que la quantité est supérieure à 1
+            quantityElement.textContent = --quantity; // Décrémenter et mettre à jour l'affichage
+            updateTotalPrice(); // Appeler la fonction pour mettre à jour le prix total
+        }
+    });
+
+    // Gérer le clic sur le bouton "like"
+    likeButton.addEventListener('click', () => {
+        likeButton.classList.toggle('liked'); // Ajouter ou supprimer la classe 'liked' pour changer le style
+    });
+
+    // Gérer la suppression de l'article
+    removeButton.addEventListener('click', () => {
+        item.remove(); // Supprimer l'élément du DOM
+        updateTotalPrice(); // Appeler la fonction pour mettre à jour le prix total
+    });
+});
+
+// Fonction pour mettre à jour le prix total du panier
+function updateTotalPrice() {
+    let totalPrice = 0; // Initialiser le prix total à 0
+    // Parcourir tous les articles du panier
+    document.querySelectorAll('.cart-item').forEach(item => {
+        const quantity = parseInt(item.querySelector('.item-quantity').textContent); // Obtenir la quantité
+        const price = parseFloat(item.querySelector('.item-price').textContent.replace(' €', '')); // Obtenir le prix et le convertir en float
+        totalPrice += quantity * price; // Calculer le prix total
+    });
+    // Mettre à jour l'affichage du prix total
+    totalPriceElement.textContent = totalPrice.toFixed(2); // Formater à 2 décimales
+}
+
+// Initialiser le prix total lors du chargement de la page
+updateTotalPrice();
+
+
+    </script>
+</body>
+</html>
