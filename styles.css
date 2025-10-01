@@ -1,0 +1,84 @@
+/* Style global pour le corps de la page */
+body {
+    display: flex; /* Utiliser flexbox pour centrer le contenu */
+    justify-content: center; /* Centrer horizontalement */
+    align-items: center; /* Centrer verticalement */
+    height: 100vh; /* Hauteur de la fenêtre d'affichage */
+    margin: 0; /* Supprimer les marges par défaut */
+    background-color:peru; /* Couleur de fond grise claire */
+    font-family: Arial, sans-serif; /* Police par défaut */
+}
+
+/* Style pour le conteneur principal du panier */
+#cart {
+    background-color: #edc1c1; /* Couleur de fond blanche */
+    padding: 20px; /* Espacement intérieur */
+    border-radius: 10px; /* Coins arrondis */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 1); /* Ombre légère autour du conteneur */
+    width: 400px; /* Largeur fixe */
+}
+
+/* Style pour le titre du panier */
+h1 {
+    text-align: center; /* Centrer le texte */
+}
+
+/* Style pour chaque élément du panier */
+.cart-item {
+    display: flex; /* Utiliser flexbox pour aligner les éléments horizontalement */
+    justify-content: space-between; /* Espacer les éléments à l'intérieur */
+    align-items: center; /* Aligner verticalement les éléments */
+    padding: 10px 0; /* Espacement vertical */
+    border-bottom: 1px solid #ddd; /* Bordure inférieure légère */
+}
+
+/* Style pour les informations sur l'article */
+.item-info {
+    flex-grow: 1; /* Permet à cet élément de prendre tout l'espace disponible */
+}
+
+/* Style pour le nom du produit */
+.item-name {
+    font-size: 1.2em; /* Taille de police augmentée */
+}
+
+/* Style pour le prix du produit */
+.item-price {
+    color: #fffefe; /* Couleur grise pour le prix */
+}
+
+/* Style pour le conteneur des actions de l'article */
+.item-actions {
+    display: flex; /* Utiliser flexbox pour aligner les boutons */
+    align-items: center; /* Aligner verticalement les boutons */
+}
+
+/* Style pour les boutons (quantité, supprimer, aimer) */
+.btn-quantity, .btn-remove, .btn-like {
+    background-color: transparent; /* Fond transparent par défaut */
+    border: 1px solid #007BFF; /* Bordure bleue */
+    color: #007BFF; /* Texte bleu */
+    padding: 5px 10px; /* Espacement intérieur */
+    border-radius: 5px; /* Coins arrondis pour les boutons */
+    cursor: pointer; /* Curseur en forme de main au survol */
+    margin: 0 5px; /* Espacement horizontal entre les boutons */
+}
+
+/* Style pour les boutons au survol */
+.btn-quantity:hover, .btn-remove:hover, .btn-like:hover {
+    background-color: #007BFF; /* Fond bleu au survol */
+    color: white; /* Texte blanc au survol */
+}
+
+/* Style pour le bouton "like" quand il est aimé */
+.btn-like.liked {
+    color: red; /* Couleur rouge pour le cœur aimé */
+    border-color: red; /* Bordure rouge pour le bouton aimé */
+}
+
+/* Style pour le total du panier */
+.total {
+    text-align: right; /* Alignement à droite du texte */
+    margin-top: 20px; /* Marge supérieure pour espacer du contenu précédent */
+    font-size: 1.5em; /* Taille de police augmentée pour le total */
+}
